@@ -1,0 +1,10 @@
+{
+  "name": "Domo Vite React app",
+  "version": "0.0.1",
+  "size": {
+    "width": 5,
+    "height": 3
+  },
+  "fullpage": true,
+  "mapping": []
+}
