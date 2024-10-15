@@ -1,10 +1,15 @@
+// WARNING: DO NOT DELETE ANY BOILERPLATE COMMENTS IN THIS FILE (start with //-- )
+// IF YOU DO, GENERATED REDUCERS WILL NOT BE WIRED UP AUTOMATICALLY.
+
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import CounterSlice from './counter/slice';
+//-- importRef
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    app: CounterSlice,
+    counter: CounterSlice,
+    //-- reducerRef
   },
 });
 

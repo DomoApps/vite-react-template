@@ -1,15 +1,15 @@
 import { createAppSlice } from '../createAppSlice';
 
-interface AppState {
+interface State {
   value: number;
 }
 
-const initialState: AppState = {
+const initialState: State = {
   value: 0,
 };
 
 export const CounterSlice = createAppSlice({
-  name: 'app',
+  name: 'counter',
   initialState,
   reducers: (create) => ({
     // increments the counter by one
