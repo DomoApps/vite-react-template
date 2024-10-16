@@ -6,14 +6,16 @@
   "scripts": {
     "start": "reset && node server.js",
     "build": "{pmRunner} run-checks && vite build",
-    "preview": "vite build && vite preview",
+    "preview": "{pmRunner} build && vite preview",
     "run-checks": "{pmRunner} format && {pmRunner} lint && {pmRunner} test:ci",
     "lint": "eslint .",
     "test": "vitest",
     "test:ci": "vitest run --passWithNoTests --no-color",
     "format": "prettier --ignore-unknown --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
     "storybook": "storybook dev -p 6006",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prestart": "da apply-manifest start",
+    "prebuild": "da apply-manifest build"
   },
   "moduleDirectories": [
     "node_modules",
@@ -56,6 +58,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "eslint-plugin-storybook": "^0.8.0",
     "express": "^4.21.0",
+    "get-port": "^7.1.0",
     "globals": "^15.9.0",
     "husky": "^9.1.6",
     "identity-obj-proxy": "^3.0.0",

@@ -31,3 +31,4 @@ dist-ssr
 
 # production
 /build
+/src/manifest.tmp.json

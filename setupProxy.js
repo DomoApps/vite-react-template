@@ -1,15 +1,15 @@
-import { Proxy } from '@domoinc/ryuu-proxy';
 import fs from 'fs';
+import path from 'path';
+import { Proxy } from '@domoinc/ryuu-proxy';
 import { createRequire } from 'module';
 
 const manifest = createRequire(import.meta.url)('./public/manifest.json');
 
 let tempManifest;
-const tempPath = `${process.cwd()}/src/manifest.tmp.json`;
+const tempPath = path.join(process.cwd(), '.tmp', 'manifest.json');
 try {
   tempManifest = fs.readFileSync(tempPath, 'utf8');
   tempManifest = JSON.parse(tempManifest);
-  fs.unlinkSync(tempPath);
 } catch (e) {
   // No overrides selected
 }
