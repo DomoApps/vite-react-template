@@ -7,6 +7,10 @@ import { App } from 'components/App/App.tsx';
 
 import './index.scss';
 
+declare const DOMO_APP_NAME: string;
+declare const DOMO_APP_VERSION: string;
+console.log(`${DOMO_APP_NAME}@${DOMO_APP_VERSION}`);
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>

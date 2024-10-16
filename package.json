@@ -6,6 +6,7 @@
   "scripts": {
     "start": "reset && node server.js",
     "build": "{pmRunner} run-checks && vite build",
+    "preview": "vite build && vite preview",
     "run-checks": "{pmRunner} format && {pmRunner} lint && {pmRunner} test:ci",
     "lint": "eslint .",
     "test": "vitest",

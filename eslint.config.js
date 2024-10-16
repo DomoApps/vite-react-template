@@ -8,19 +8,7 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: [
-      'node_modules',
-      'dist',
-      'setupProxy.js',
-      'react-app-env.d.ts',
-      'vite.config.ts',
-      '.storybook/main.ts',
-      '.storybook/preview.ts',
-      '/src/vite-env.d.ts',
-      'jest.config.js',
-      'jest.setup.ts',
-      'custom-jsdom-env.js',
-    ],
+    ignores: ['/src/vite-env.d.ts'],
   },
   {
     extends: [
@@ -28,7 +16,7 @@ export default tseslint.config(
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
     ],
-    files: ['**/*.{ts,tsx}'],
+    files: ['/src/**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

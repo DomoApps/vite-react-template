@@ -4,6 +4,7 @@ import { Counter } from 'components/Counter/Counter';
 
 import reactLogo from '/static/react.svg';
 import viteLogo from '/static/vite.svg';
+import helpIcon from '/static/help_icon.svg';
 import domoLogo from '/static/domo.png';
 
 import styles from './App.module.scss';
@@ -25,5 +26,11 @@ export const App: FC = () => (
     <h1>Domo + Vite + React</h1>
 
     <Counter allowAsync />
+
+    <div className={styles.support}>
+      <a href={import.meta.env.DOMO_SUPPORT} target="_blank">
+        <img src={helpIcon} />
+      </a>
+    </div>
   </div>
 );

@@ -92,3 +92,18 @@
   transition: 0s;
   width: 0%;
 }
+
+.support {
+  bottom: 10px;
+  opacity: 0.7;
+  position: fixed;
+  right: 10px;
+  transition: opacity 145ms ease-in-out;
+  img {
+    height: 36px;
+    width: 36px;
+  }
+  &:hover {
+    opacity: 1;
+  }
+}
