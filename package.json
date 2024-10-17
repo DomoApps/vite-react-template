@@ -4,18 +4,20 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "prepare": "husky",
     "start": "reset && node server.js",
     "build": "{pmRunner} run-checks && vite build",
     "preview": "{pmRunner} build && vite preview",
     "run-checks": "{pmRunner} format && {pmRunner} lint && {pmRunner} test:ci",
-    "lint": "eslint .",
+    "format": "prettier --ignore-unknown --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
+    "lint": "eslint",
     "test": "vitest",
     "test:ci": "vitest run --passWithNoTests --no-color",
-    "format": "prettier --ignore-unknown --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
     "storybook": "storybook dev -p 6006",
-    "prepare": "husky",
+    "generate": "da generate",
     "prestart": "da apply-manifest start",
-    "prebuild": "da apply-manifest build"
+    "prebuild": "da apply-manifest build",
+    "upload": "yarn build && cd build && domo publish && cd .."
   },
   "moduleDirectories": [
     "node_modules",
@@ -35,7 +37,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
-    "@domoapps/da": "^2.0.0",
+    "@domoinc/da": "^2.0.0",
     "@domoinc/ryuu-proxy": "^4.4.0",
     "@eslint/js": "^9.10.0",
     "@storybook/addon-essentials": "^8.3.2",

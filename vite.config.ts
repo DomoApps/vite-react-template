@@ -79,6 +79,7 @@ export default defineConfig(({ command }) => {
     build: {
       outDir: buildDir,
       emptyOutDir: true,
+      sourcemap: false,
     },
     clearScreen: false,
   };

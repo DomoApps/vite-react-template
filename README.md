@@ -1,49 +1,86 @@
-> This project was bootstrapped with [Vite](https://vitejs.dev/).
+> ### This project was bootstrapped with [Vite](https://vitejs.dev/).
 
-# DomoApps Advanced App Platform Package
+# DomoApps Advanced App Platform Template
 
-Vite Template optimized for advanced DomoApp usage.
+## Overview
 
-- The manifest and thumbnail are provided in the `public` folder.
-- The proxy server is setup with `@domoinc/ryuu-proxy` for local development to your domo instance.
-- An upload script has been added to the package.json for easy upload.
+Vite Template optimized for building advanced DomoApps.
 
-Steps to get going:
+* [Usage](#usage)
+* [Running project (local dev)](#running-project-local-dev)
+* [Building and uploading](#building-and-uploading)
+* [Login and proxy](#login-and-proxy)
+  + [Login](#login)
+  + [Dev-server proxy](#dev-server-proxy)
+* [Available Scripts](#available-scripts)
+  + [`pnpm generate`](#pnpm-generate)
+      - [*Components*](#components)
+      - [*Reducers*](#reducers)
+  + [`pnpm start`](#pnpm-start)
+  + [`pnpm test`](#pnpm-test)
+  + [`pnpm build`](#pnpm-build)
+  + [`pnpm storybook`](#pnpm-storybook)
+* [Additional notes](#additional-notes)
 
-1. Use the domoapps cli to login to your Domo instance `domo login`
-2. Upload your base app to your Domo instance using `pnpm upload`
+## Usage
 
-- The project will build, add all assets to the `build` folder, and then upload those assets to Domo
+The easiest way to use this template is to run the `da` cli command found in [@domoinc/da](https://www.npmjs.com/package/@domoinc/da). Please follow the installation instructions thre and use the `da new my-app-name` command to create a new project.
 
-3. The `manifest.json` file in the `build` folder will be modified by the domoapps cli to include an `id` property. You will want to copy this `id` into the manifest in your `public` folder so that it doesn't continue to create a new `id` on each upload
-4. If you intend to use AppDB, make sure to also add a `proxyId` to the `manifest.json` file in your `public` folder (or overrides). See [documentation](https://developer.domo.com/docs/dev-studio/step4#Set%20Up%20Your%20Proxy) for more info.
-5. Generate new `components` and `reducers` using the `pnpm generate` command (more info below).
+* Note: you can also manually clone this repository, or use a tool like [degit](https://www.npmjs.com/package/degit) to scaffold a project using this template. _However_, you would have to manually replace the placeholders in the template (e.g. app name, package manager, etc).
+
+## Running project (local dev)
+
+Once your template is set up and ready, use the `start` script to run the local server. e.g:
+
+`pnpm start`
+
+By default, the build tool will attempt to run the server on port 3000, 3001, or 3002 (in that order). If all these ports are busy, a random available port will be used.
+
+## Building and uploading
+
+The project can be built using the `build` script. But an `upload` script is also provided, which will prepare and build the project, and upload it to your Domo instance.
+
+* Note: make sure to [log into](#login-and-proxy) your Domo instance before attempting to upload your project.
+
+## Login and proxy
+
+In order to send requests to your Domo instance from within your app while running a local server, or to upload your project to your instance, you must first log into it.
+
+
+### Login
+
+Use the ["ryuu" cli](https://www.npmjs.com/package/ryuu) to login to your Domo instance: `domo login`.
+
+### Dev-server proxy
+
+Before using endpoints in your instance, you must login and upload your project at least once. This is required to obtain a proxy id to provide to the local server's proxy. Follow these steps:
+
+1. [Log into](#login) your instance
+2. Upload your base app to your Domo instance using the `upload` script (e.g. `pnpm upload`). The project will build, add all assets to the `build` folder, and then upload those assets to Domo.
+3. The `manifest.json` file in the `build` folder will be modified by the domoapps cli to include an `id` property. You will want to copy this `id` into the manifest in your `public` folder so that it doesn't continue to create a new `id` (and therefore, a new asset) on each upload. This is your new asset's id.
+4. On your Domo instance, navigate to your Asset Library, locate the newly create asset, and create a new card for it.
+5. Back in your project, add a `proxyId` property to the `manifest.json` file in your `public` folder (or `src/manifestOverrides`) using the id of the newly created card. See [this documentation](https://www.npmjs.com/package/@domoinc/ryuu-proxy#user-content-getting-a-proxyid-advanced) for more information on obtaining the proxy id.
 
 ## Available Scripts
 
-In the project directory, you can run:
+The following scripts are provided in the base template. The examples in this section use `pnpm`, but you can use your favorite package manager to run them (e.g. `pnpm`, `npm run`, `yarn`)
 
 ### `pnpm generate`
 
-Allows you to generate components or redux slices.
+The command `pnpm generate` will generate a new component or reducer slice, and add it to your project (or the [`da` cli]([@domoinc/da](https://www.npmjs.com/package/@domoinc/da#da-generate-template)), if installed globally)
 
-**Components**
+#### *Components*
 
-The command `pnpm generate component` will generate a new component and add it to the components folder of your project.
-There are 3 parameters to the `component` generator that you will be prompted for if you do not provide them inline:
+The new component will be added in the `src/components` folder. The storybook and test files (if selected) will be included in the same folder.
 
-- Component Name
-- Whether or not you would like to include a test file (y/n)
-- Whether or not you would like to include a storybook file (y/n)
+#### *Reducers*
 
-You can provide these parameters inline if you want: `pnpm generate component [myComponentName] [y/n] [y/n]`.
+Generating a slice will produce the following modifications to your project:
 
-**Redux Slices**
-
-The slice generator only has one parameter: its name. You can generate a slice using the command `pnpm generate slice mySlice`. If you do not provide a name you will be prompted for one. Generating a slice will produce the following modifications to your project:
-
-- A new folder will be created in the `/src/reducers` directory of your project and an `slice.ts` file will be added to it with some boiler plate examples of creating reducer actions and selectors using Redux Toolkit. More info can be found in the Redux Toolkit [documentation](https://redux-toolkit.js.org/api/createSlice).
-- The `index.ts` file in the base of the reducer folder will be modified to import your new slice and wire it up. As long as you always create slices using the generator command, you should never need to touch this file.
+1. A new folder will be created in the `/src/reducers` directory of your project and a `slice.ts` file will be added to it with some boiler plate examples for actions and selectors using Redux Toolkit.
+More info can be found in the Redux Toolkit [documentation](https://redux-toolkit.js.org/api/createSlice).
+2. The `index.ts` file in the base of the reducer folder will be modified to import your new slice and wire it up.
+_As long as you always create slices using the generator command, you should never need to touch this file._
 
 ### `pnpm start`
 
@@ -51,19 +88,35 @@ Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.
-You will also see any lint errors in the console.
+You will also see lint errors, if any, in the console.
+
+### `pnpm build`
+
+Builds the app for production to the `build` folder.
+
+Prettier is used in the project to auto-format your code, and eslint is used to maintain code rules. Both scripts are run before every build, along with any unit tests present.
 
 ### `pnpm test`
 
 Launches the test runner in watch mode.
 See the section about [writing tests](https://vitest.dev/guide/#writing-tests) for more information.
 
-### `pnpm build`
-
-Builds the app for production to the `build` folder.
-
 ### `pnpm storybook`
 
 Starts up a storybook server to host any components that have been generated with a storybook file.
 
-More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
+More on how to set up stories at: https://storybook.js.org/docs/writing-stories#defining-stories
+
+## git hooks
+
+Husky is used to provide access to git hooks. The `prepare` script runs automatically the first time the project is set up via a package manager.
+
+Husky and lint-staged are used to run scripts during certain stages of git commits. For example, running `git commit` will trigger a `pre-commit` and a `post-commit`.
+
+You can disable husky by removing the `.husky` folder from your project and the `hooksPath` property from your `.git/config` file. After that, you can remove the `husky` and `lint-staged` packages from your project, as well as the `prepare` script and `lint-staged` properties from `package.json`.
+
+## Additional notes
+
+- The base manifest and thumbnail files are provided in the `public` folder.
+- To add a new entry for specific manifest overrides use `da` (`da manifest my-instance "This is my instance override"` )
+- The proxy server is set up with [@domoinc/ryuu-proxy](https://www.npmjs.com/package/@domoinc/ryuu-proxy) for local development to your domo instance.
