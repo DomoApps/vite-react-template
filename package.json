@@ -17,7 +17,7 @@
     "generate": "da generate",
     "prestart": "da apply-manifest start",
     "prebuild": "da apply-manifest build",
-    "upload": "yarn build && cd build && domo publish && cd .."
+    "upload": "{pmRunner} build && cd build && domo publish && cd .."
   },
   "moduleDirectories": [
     "node_modules",
