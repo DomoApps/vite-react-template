@@ -20,6 +20,7 @@ Vite Template optimized for building advanced DomoApps.
   + [`pnpm test`](#pnpm-test)
   + [`pnpm build`](#pnpm-build)
   + [`pnpm storybook`](#pnpm-storybook)
+* [git hooks](#git-hooks)
 * [Additional notes](#additional-notes)
 
 ## Usage
