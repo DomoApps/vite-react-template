@@ -80,6 +80,13 @@ export default defineConfig(({ command }) => {
       outDir: buildDir,
       emptyOutDir: true,
       sourcemap: false,
+      minify: true,
+      rollupOptions: {
+        output: {
+          sourcemap: false,
+          manualChunks: {},
+        },
+      },
     },
     clearScreen: false,
   };
