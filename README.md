@@ -25,7 +25,7 @@ Vite Template optimized for building advanced DomoApps.
 
 ## Usage
 
-The easiest way to use this template is to run the `da` cli command found in [@domoinc/da](https://www.npmjs.com/package/@domoinc/da). Please follow the installation instructions thre and use the `da new my-app-name` command to create a new project.
+The easiest way to use this template is to run the `da` cli command found in [@domoinc/da](https://www.npmjs.com/package/@domoinc/da). Please follow the installation instructions there and use the `da new my-app-name` command to create a new project.
 
 * Note: you can also manually clone this repository, or use a tool like [degit](https://www.npmjs.com/package/degit) to scaffold a project using this template. _However_, you would have to manually replace the placeholders in the template (e.g. app name, package manager, etc).
 
@@ -86,10 +86,10 @@ _As long as you always create slices using the generator command, you should nev
 ### `pnpm start`
 
 Runs the app in the development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.
-You will also see lint errors, if any, in the console.
+The page will hot reload as you make edits and save files.
+Linting errors will be logged in the console.
 
 ### `pnpm build`
 
