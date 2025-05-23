@@ -14,8 +14,8 @@
     "test:ci": "vitest run --passWithNoTests --no-color",
     "storybook": "storybook dev -p 6006",
     "generate": "da generate",
-    "prestart": "da apply-manifest start",
-    "prebuild": "da apply-manifest build",
+    "prestart": "da apply-manifest",
+    "prebuild": "da apply-manifest",
     "upload": "{pmRunner} build && cd build && domo publish && cd .."
   },
   "moduleDirectories": [
