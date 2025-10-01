@@ -23,5 +23,5 @@
     "noUnusedParameters": true,
     "strict": true
   },
-  "include": ["src", "vite.config.ts", "setupProxy.js"]
+  "include": ["src", "vite.config.ts", "setupProxy.js", "jest.setup.ts"]
 }

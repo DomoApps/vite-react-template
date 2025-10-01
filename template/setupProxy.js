@@ -10,7 +10,7 @@ export function setupRyuuProxy(server) {
   try {
     const tempManifestContent = fs.readFileSync(tempPath, 'utf-8');
     manifest = JSON.parse(tempManifestContent);
-  } catch (error) {
+  } catch {
     // Using default manifest when temp manifest is not available
   }
 

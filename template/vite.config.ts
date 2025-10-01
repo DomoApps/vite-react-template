@@ -11,7 +11,7 @@ export const buildDir = 'build';
 export const tmpDir = '.tmp';
 export const envPrefix = 'DOMO_';
 
-type ConfigInput = {
+interface ConfigInput {
   command: 'build' | 'serve';
   mode: string;
 }
@@ -23,7 +23,7 @@ export default defineConfig(({ command }: ConfigInput) => {
   try {
     const tmpManifestContent = fs.readFileSync(tmpManifestPath, 'utf-8');
     manifest = JSON.parse(tmpManifestContent);
-  } catch (error) {
+  } catch {
     // Using default manifest when temp manifest is not available
   }
 

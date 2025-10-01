@@ -16,7 +16,3 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
-
-interface Window extends ImportMetaEnv {
-
-}

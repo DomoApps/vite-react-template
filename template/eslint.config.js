@@ -19,12 +19,12 @@ export default [
       globals: globals.node,
     },
   },
-  // TypeScript files
+  // TypeScript files - base configs
+  ...tseslint.configs.recommended,
+  ...tseslint.configs.stylistic,
+  // TypeScript files - project specific settings
   {
     files: ['src/**/*.{ts,tsx}', 'vite.config.ts', '*.ts'],
-    ...js.configs.recommended,
-    ...tseslint.configs.recommended,
-    ...tseslint.configs.stylistic,
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
