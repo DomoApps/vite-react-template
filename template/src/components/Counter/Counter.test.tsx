@@ -1,23 +1,28 @@
 import { expect, test, describe, beforeEach, afterEach } from 'vitest';
-import { render, screen, configure } from '@testing-library/react';
+import { render, screen, configure, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { Counter } from './Counter';
 import { Provider } from 'react-redux';
-import { store } from 'reducers';
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from 'reducers/counter/slice';
 
 configure({ reactStrictMode: true });
 
 describe('Increment and decrement value', () => {
   let value: HTMLElement;
   let unmount: () => void;
+  let store: ReturnType<typeof configureStore>;
 
   beforeEach(async () => {
+    // Recreate the Redux store before each test
+    store = configureStore({ reducer: { counter: counterReducer } });
+
     unmount = render(
       <Provider store={store}>
         <Counter allowAsync />
       </Provider>,
     ).unmount;
-    value = await screen.findByRole('textbox', { name: 'Counter' });
+    value = await screen.findByLabelText('Counter'); // Updated to match aria-label
   });
 
   afterEach(() => unmount());
@@ -38,8 +43,19 @@ describe('Increment and decrement value', () => {
     const decBtn = await screen.findByRole('button', {
       name: 'Decrement value',
     });
+
+    // Log initial Redux state for debugging
+    console.log('Initial Redux state:', store.getState());
+
     await userEvent.click(decBtn);
-    expect(value.textContent).toBe('0');
+
+    // Wait for the DOM to update
+    await waitFor(() => {
+      expect(value.textContent).toBe('-1');
+    });
+
+    // Log final Redux state for debugging
+    console.log('Final Redux state:', store.getState());
   });
 
   test('increase custom amount (default=2)', async () => {
