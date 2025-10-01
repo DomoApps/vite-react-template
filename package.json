@@ -22,9 +22,5 @@
   },
   "engines": {
     "node": ">=16"
-  },
-  "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "echo 'Template ready for publishing'"
   }
 }
