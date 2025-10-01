@@ -5,18 +5,27 @@ import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import publicManifest from './public/manifest.json';
+import { setupRyuuProxy } from './setupProxy';
 
 export const buildDir = 'build';
 export const tmpDir = '.tmp';
 export const envPrefix = 'DOMO_';
 
+type ConfigInput = {
+  command: 'build' | 'serve';
+  mode: string;
+}
+
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command }: ConfigInput) => {
   let manifest = publicManifest;
   const tmpManifestPath = path.join(process.cwd(), tmpDir, 'manifest.json');
   try {
-    manifest = JSON.parse(fs.readFileSync(tmpManifestPath).toString());
-  } catch (e) {}
+    const tmpManifestContent = fs.readFileSync(tmpManifestPath, 'utf-8');
+    manifest = JSON.parse(tmpManifestContent);
+  } catch (error) {
+    // Using default manifest when temp manifest is not available
+  }
 
   return {
     plugins: [
@@ -33,7 +42,7 @@ export default defineConfig(({ command }) => {
       tsconfigPaths(),
       {
         name: 'html-transform',
-        transformIndexHtml(html) {
+        transformIndexHtml(html: string) {
           return html.replace(
             /<title>(.*?)<\/title>/,
             `<title>${manifest.name}@${manifest.version}</title>`,
@@ -52,11 +61,14 @@ export default defineConfig(({ command }) => {
               );
               fs.renameSync(tmpManifestPath, buildManifestPath);
             }
-          } catch (e) {
-            console.log('Could not replace "manifest.json" in build folder');
-            console.error(e);
+          } catch (error) {
+            console.warn('Could not replace "manifest.json" in build folder:', error);
           }
         },
+      },
+      {
+        name: 'ryuu-proxy-middleware',
+        configureServer: setupRyuuProxy,
       },
     ],
     envDir: './.environment',
@@ -84,7 +96,10 @@ export default defineConfig(({ command }) => {
       rollupOptions: {
         output: {
           sourcemap: false,
-          manualChunks: {},
+          manualChunks: {
+            vendor: ['react', 'react-dom'],
+            redux: ['@reduxjs/toolkit', 'react-redux'],
+          },
         },
       },
     },
