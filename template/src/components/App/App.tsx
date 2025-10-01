@@ -12,13 +12,13 @@ import styles from './App.module.scss';
 export const App: FC = () => (
   <div className={styles.App}>
     <div className={styles.logos}>
-      <a href="https://developer.domo.com/" target="_blank">
+      <a href="https://developer.domo.com/" target="_blank" rel="noopener noreferrer">
         <img src={domoLogo} alt="Domo logo" />
       </a>
-      <a href="https://vitejs.dev" target="_blank">
+      <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
         <img src={viteLogo} alt="Vite logo" />
       </a>
-      <a href="https://react.dev" target="_blank">
+      <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
         <img src={reactLogo} alt="React logo" />
       </a>
     </div>
@@ -28,8 +28,8 @@ export const App: FC = () => (
     <Counter allowAsync />
 
     <div className={styles.support}>
-      <a href={import.meta.env.DOMO_SUPPORT} target="_blank">
-        <img src={helpIcon} />
+      <a href={import.meta.env.DOMO_SUPPORT} target="_blank" rel="noopener noreferrer">
+        <img src={helpIcon} alt="Help" />
       </a>
     </div>
   </div>

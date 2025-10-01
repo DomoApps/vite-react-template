@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -25,9 +25,7 @@ export const Counter: FC<CounterProps> = ({ allowAsync, simple, title }) => {
 
   const count = useSelector(selectValue);
 
-  const incAmount = !Number.isNaN(Number(incrementAmount))
-    ? Number(incrementAmount)
-    : 0;
+  const incAmount = Number.isNaN(Number(incrementAmount)) ? 0 : Number(incrementAmount);
 
   return (
     <div className={styles.Counter}>
@@ -40,18 +38,16 @@ export const Counter: FC<CounterProps> = ({ allowAsync, simple, title }) => {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          role="button"
           onClick={() => dispatch(decrement())}
         >
           -
         </button>
-        <span aria-label="Counter" role="textbox" className={styles.value}>
+        <span aria-label="Counter" className={styles.value}>
           {count}
         </span>
         <button
           className={styles.button}
           aria-label="Increment value"
-          role="button"
           onClick={() => dispatch(increment())}
         >
           +
@@ -63,14 +59,13 @@ export const Counter: FC<CounterProps> = ({ allowAsync, simple, title }) => {
           <input
             className={styles.textbox}
             aria-label="Custom increment amount"
-            role="textbox"
+            type="number"
             value={incrementAmount}
             onChange={(e) => setIncrementAmount(e.target.value)}
           />
           <button
             className={styles.button}
             aria-label="Increment custom amount"
-            role="button"
             onClick={() => dispatch(incrementByAmount(incAmount))}
           >
             Add Amount
@@ -80,7 +75,6 @@ export const Counter: FC<CounterProps> = ({ allowAsync, simple, title }) => {
             <button
               className={styles.asyncButton}
               aria-label="Increment amount async"
-              role="button"
               onClick={() => dispatch(incrementAsync(incAmount))}
             >
               Add Async

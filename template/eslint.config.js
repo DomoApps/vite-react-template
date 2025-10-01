@@ -6,17 +6,25 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+export default [
   {
-    ignores: ['/src/vite-env.d.ts'],
+    ignores: ['dist/', 'build/', 'node_modules/', '*.d.ts'],
   },
+  // JavaScript files (including config files)
   {
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
-    ],
-    files: ['/src/**/*.{ts,tsx}'],
+    files: ['*.js', '*.mjs'],
+    ...js.configs.recommended,
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.node,
+    },
+  },
+  // TypeScript files
+  {
+    files: ['src/**/*.{ts,tsx}', 'vite.config.ts', '*.ts'],
+    ...js.configs.recommended,
+    ...tseslint.configs.recommended,
+    ...tseslint.configs.stylistic,
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -24,16 +32,14 @@ export default tseslint.config(
         ecmaFeatures: {
           jsx: true,
         },
-        project: true,
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
-        warnOnUnsupportedTypeScriptVersion: false,
       },
     },
     plugins: {
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      prettierConfig,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -42,7 +48,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       '@typescript-eslint/no-misused-promises': [
-        2,
+        'error',
         {
           checksVoidReturn: {
             attributes: false,
@@ -53,4 +59,4 @@ export default tseslint.config(
     settings: { react: { version: 'detect' } },
   },
   prettierConfig,
-);
+];
