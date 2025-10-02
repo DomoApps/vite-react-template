@@ -9,7 +9,7 @@
     "preview": "{pmRunner} build && vite preview",
     "run-checks": "{pmRunner} format && {pmRunner} lint && {pmRunner} test:ci",
     "format": "prettier --ignore-unknown --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
-    "lint": "eslint",
+    "lint": "eslint --fix",
     "test": "vitest",
     "test:ci": "vitest run --passWithNoTests --no-color",
     "storybook": "storybook dev -p 6006",
@@ -28,11 +28,11 @@
     "@reduxjs/toolkit": "^2.2.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-redux": "^9.1.2"
+    "react-redux": "^9.1.2",
+    "@domoinc/toolkit": "^2.3.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
-    "@domoinc/da": "2.1.0-beta",
     "@domoinc/ryuu-proxy": "^4.4.0",
     "@eslint/js": "^9.10.0",
     "@storybook/addon-essentials": "^8.3.2",
@@ -55,6 +55,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "eslint-plugin-storybook": "^0.8.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.9.0",
     "husky": "^9.1.6",
     "identity-obj-proxy": "^3.0.0",

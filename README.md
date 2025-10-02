@@ -34,9 +34,9 @@ This template provides a complete development environment for building Domo apps
 
 ### Platform Integration
 
+- **[@domoinc/toolkit](https://www.npmjs.com/package/@domoinc/toolkit)** - Domo Development Toolkit
 - **[@domoinc/ryuu-proxy](https://www.npmjs.com/package/@domoinc/ryuu-proxy)** - Local development proxy to Domo instances
 - **[ryuu CLI](https://www.npmjs.com/package/ryuu)** - Domo deployment and management tools
-- **[@domoinc/da](https://www.npmjs.com/package/@domoinc/da)** - Code generation and project scaffolding
 
 ## 🏗️ Template Structure
 
@@ -120,8 +120,7 @@ Seamless integration with Domo platform:
 - **npm**, **yarn**, or **pnpm**
 
 ## 🔗 Related
-
-- [@domoinc/da](https://www.npmjs.com/package/@domoinc/da) - Domo Apps CLI
+- [@domoinc/toolkit](https://www.npmjs.com/package/@domoinc/toolkit) - Domo Development Toolkit
 - [@domoinc/ryuu-proxy](https://www.npmjs.com/package/@domoinc/ryuu-proxy) - Development proxy
 - [ryuu](https://www.npmjs.com/package/ryuu) - Domo CLI tools
 - [Domo Developer Portal](https://developer.domo.com/) - Official docs and API references

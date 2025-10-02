@@ -31,8 +31,9 @@ export default defineConfig(({ command }: ConfigInput) => {
     plugins: [
       react(),
       checker({
+        typescript: true,
         eslint: {
-          lintCommand: 'eslint',
+          lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
           useFlatConfig: true,
           dev: {
             logLevel: ['error'],
