@@ -9,7 +9,7 @@
     "preview": "{pmRunner} build && vite preview",
     "run-checks": "{pmRunner} format && {pmRunner} lint && {pmRunner} test:ci",
     "format": "prettier --ignore-unknown --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
-    "lint": "eslint",
+    "lint": "eslint --fix",
     "test": "vitest",
     "test:ci": "vitest run --passWithNoTests --no-color",
     "storybook": "storybook dev -p 6006",
