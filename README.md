@@ -1,4 +1,6 @@
 # Domo Vite React Template
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDomoApps%2Fvite-react-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDomoApps%2Fvite-react-template?ref=badge_shield)
+
 
 A modern Vite + React template for building Domo apps with ryuu-proxy integration, Redux Toolkit, TypeScript, and comprehensive development tooling.
 
@@ -124,3 +126,7 @@ Seamless integration with Domo platform:
 - [@domoinc/ryuu-proxy](https://www.npmjs.com/package/@domoinc/ryuu-proxy) - Development proxy
 - [ryuu](https://www.npmjs.com/package/ryuu) - Domo CLI tools
 - [Domo Developer Portal](https://developer.domo.com/) - Official docs and API references
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDomoApps%2Fvite-react-template.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FDomoApps%2Fvite-react-template?ref=badge_large)
